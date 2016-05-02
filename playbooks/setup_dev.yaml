@@ -1,0 +1,28 @@
+---
+- name: Init dev
+  hosts: localhost
+  sudo: yes
+
+  tasks:
+  - name: Ensure python-apt is installed
+    shell: apt-get install python-apt -y -q
+  - name: install python-apt
+    raw: apt-get update && apt-get install python-apt -y -q
+  - name: install python pip
+    raw:  apt-get install python-pip
+  - name: install python-dev
+    raw: apt-get install python-dev
+  - name: install build-essential
+    raw: yes '' | apt-get install build-essential
+  - name: Check PIP
+    pip: name=pygeocoder
+  - name: install requirements
+    pip: requirements=/dp/dpansible/requirements.txt
+
+
+# #### #
+# TODO #
+# #### #
+# Clone the repro.
+# Sync db
+# Import data
